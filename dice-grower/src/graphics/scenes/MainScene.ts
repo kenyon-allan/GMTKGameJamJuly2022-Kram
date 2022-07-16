@@ -1,4 +1,4 @@
-import { ImageNames } from "../assets/ImageNames";
+import { ImageNames } from "../ImageNames";
 
  export default class MainScene extends Phaser.Scene {
     constructor()
@@ -19,14 +19,13 @@ import { ImageNames } from "../assets/ImageNames";
 		//
 
 	preload() {
-		this.load.setBaseURL('/') //todo something
+		//this.load.setBaseURL('/') //todo something
 
-        this.load.image(ImageNames.STEM, 'src/graphics/assets/stem.png')
+        this.load.image(ImageNames.STEM, 'assets/stem.png')
 	}
 
 	create() {
 		this.add.image(400,300,ImageNames.STEM);
-		this.add.image(400,400,ImageNames.STEM);
 	}
 
  }
