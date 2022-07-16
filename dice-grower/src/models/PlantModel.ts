@@ -23,18 +23,17 @@ export default class PlantModel {
         return this.privateCurrentStage;
     }
 
-    // TODO: build me
     water() {
         this.privateCurrentWaterings += 1;
         if (this.privateCurrentWaterings === this.wateringsPerGrowthStage) {
             if (this.privateCurrentStage === GrowthStages.SEED) {
-                this.privateCurrentStage = GrowthStages.SMALL_PLANT;
+                this.privateCurrentStage = GrowthStages.SPROUT;
             }
-            else if (this.privateCurrentStage === GrowthStages.SMALL_PLANT) {
-                this.privateCurrentStage = GrowthStages.MEDIUM_PLANT;
+            else if (this.privateCurrentStage === GrowthStages.SPROUT) {
+                this.privateCurrentStage = GrowthStages.FLOWER;
             }
-            else if (this.privateCurrentStage === GrowthStages.MEDIUM_PLANT) {
-                this.privateCurrentStage = GrowthStages.LARGE_PLANT;
+            else if (this.privateCurrentStage === GrowthStages.FLOWER) {
+                this.privateCurrentStage = GrowthStages.FRUIT;
             }
             this.privateCurrentWaterings = 0;
         }
@@ -42,14 +41,23 @@ export default class PlantModel {
 
     fertilize() {
         if (this.privateCurrentStage === GrowthStages.SEED) {
-            this.privateCurrentStage = GrowthStages.SMALL_PLANT;
+            this.privateCurrentStage = GrowthStages.SPROUT;
         }
-        else if (this.privateCurrentStage === GrowthStages.SMALL_PLANT) {
-            this.privateCurrentStage = GrowthStages.MEDIUM_PLANT;
+        else if (this.privateCurrentStage === GrowthStages.SPROUT) {
+            this.privateCurrentStage = GrowthStages.FLOWER;
         }
-        else if (this.privateCurrentStage === GrowthStages.MEDIUM_PLANT) {
-            this.privateCurrentStage = GrowthStages.LARGE_PLANT;
+        else if (this.privateCurrentStage === GrowthStages.FLOWER) {
+            this.privateCurrentStage = GrowthStages.FRUIT;
         }
         this.privateCurrentWaterings = 0;
+    }
+
+    combineTraits() {
+        
+    }
+
+    harvest(): FruitModel {
+        const newFruit: FruitModel = new FruitModel(4, 'black', 'solid', 4);
+        return newFruit;
     }
 }
