@@ -1,9 +1,9 @@
 export class FruitColors {
-    color:[number, number, number];
-    constructor(color:[number, number, number]){
-        this.color = colorPicker()
+    color: Array<Number>;
+    public constructor(){
+        this.color = this.colorPicker()
     }
-    function colorPicker() {
+    private colorPicker() {
         let pickR = Math.floor(Math.random()*256);
         let pickG = Math.floor(Math.random()*256);
         let pickB = Math.floor(Math.random()*256);
