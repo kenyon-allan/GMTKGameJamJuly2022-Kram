@@ -23,7 +23,11 @@ export default class PlantModel {
         return this.privateCurrentStage;
     }
 
-    water() {
+    get harvestFruit(): FruitModel {
+        return this.fruit;
+    }
+
+    public water() {
         this.privateCurrentWaterings += 1;
         if (this.privateCurrentWaterings === this.wateringsPerGrowthStage) {
             if (this.privateCurrentStage === GrowthStages.SEED) {
@@ -39,7 +43,7 @@ export default class PlantModel {
         }
     }
 
-    fertilize() {
+    public fertilize() {
         if (this.privateCurrentStage === GrowthStages.SEED) {
             this.privateCurrentStage = GrowthStages.SPROUT;
         }
@@ -52,12 +56,25 @@ export default class PlantModel {
         this.privateCurrentWaterings = 0;
     }
 
-    combineTraits() {
-        
-    }
+    public combineTraits(plants: PlantModel[]) {
+            let leLifespan: number[] = [this.wateringsPerGrowthStage];
+            let leColors: number[][] = [this.fruit.fruitColor];
+            let leSizes: number[] = [this.fruit.fruitSize];
+            let lePatterns: string[] = [this.fruit.fruitPattern];
 
-    harvest(): FruitModel {
-        const newFruit: FruitModel = new FruitModel(4, 'black', 'solid', 4);
-        return newFruit;
+            plants.forEach(function(plant) {
+                leLifespan.push(plant.wateringsPerGrowthStage);
+                leColors.push(plant.fruit.fruitColor);
+                leSizes.push(plant.fruit.fruitSize);
+                lePatterns.push(plant.fruit.fruitPattern);
+            });
+
+            //Combine colors: 50% chance of blend, other 50% is split evenly between being just one color
+            if (Math.random() >= 0.5) {
+                //blend
+            }
+            else {
+                var choice = leColors[Math.floor(Math.random() * leColors.length)];
+            }
     }
 }
