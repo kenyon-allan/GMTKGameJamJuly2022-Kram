@@ -1,6 +1,6 @@
 import Phaser from 'phaser'
 
-import GreenhouseScene from './scenes/GreenhouseScene'
+import GreenhouseScene from './graphics/scenes/GreenhouseScene'
 
 const config: Phaser.Types.Core.GameConfig = {
 	type: Phaser.AUTO,
