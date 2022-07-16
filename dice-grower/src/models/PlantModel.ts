@@ -57,24 +57,57 @@ export default class PlantModel {
     }
 
     public combineTraits(plants: PlantModel[]) {
-            let leLifespan: number[] = [this.wateringsPerGrowthStage];
+            let leLifespans: number[] = [this.wateringsPerGrowthStage];
             let leColors: number[][] = [this.fruit.fruitColor];
             let leSizes: number[] = [this.fruit.fruitSize];
             let lePatterns: string[] = [this.fruit.fruitPattern];
 
             plants.forEach(function(plant) {
-                leLifespan.push(plant.wateringsPerGrowthStage);
+                leLifespans.push(plant.wateringsPerGrowthStage);
                 leColors.push(plant.fruit.fruitColor);
                 leSizes.push(plant.fruit.fruitSize);
                 lePatterns.push(plant.fruit.fruitPattern);
             });
 
-            //Combine colors: 50% chance of blend, other 50% is split evenly between being just one color
+            //Combine traits: 50% chance of blend, other 50% is split evenly of taking directly from one of the parents
+            //Waterings
             if (Math.random() >= 0.5) {
-                //blend
+                let newLifespan: number = 0;
+                leLifespans.forEach(function(lifespan) {
+                    newLifespan += lifespan;
+                });
+                newLifespan /= leLifespans.length;
+
+                this.fruit.fruitSeed.changeWaterings(newLifespan);
             }
             else {
-                var choice = leColors[Math.floor(Math.random() * leColors.length)];
+                var choice = leLifespans[Math.floor(Math.random() * leLifespans.length)];
+                this.fruit.fruitSeed.changeWaterings(choice);
             }
+
+            //Color
+            if (Math.random() >= 0.5) {
+                let newColor: number[] = [0,0,0];
+                leColors.forEach(function(color) {
+                    newColor[0] += color[0];
+                    newColor[1] += color[1];
+                    newColor[2] += color[2];
+                });
+                newColor[0] /= leColors.length;
+                newColor[1] /= leColors.length;
+                newColor[2] /= leColors.length;
+
+                this.fruit.fruitSeed.changeColor(newColor);
+            }
+            else {
+                var choice2 = leColors[Math.floor(Math.random() * leColors.length)];
+                this.fruit.fruitSeed.changeColor(choice2);
+            }
+
+            //Size
+            var choice3 = leSizes[Math.floor(Math.random() * leSizes.length)];
+            this.fruit.fruitSeed.changeSize(choice3);
+
+            //TODO: combine patterns
     }
 }
