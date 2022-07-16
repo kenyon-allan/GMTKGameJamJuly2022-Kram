@@ -1,19 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import Phaser from 'phaser'
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+import GreenhouseScene from './scenes/GreenhouseScene'
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+const config: Phaser.Types.Core.GameConfig = {
+	type: Phaser.AUTO,
+	width: window.screen.availWidth * 0.8,
+	height: window.screen.availHeight * 0.8,
+	physics: {
+		default: 'arcade',
+		arcade: {
+			gravity: { y: 200 }
+		}
+	},
+	scene: [GreenhouseScene]
+}
+
+export default new Phaser.Game(config)

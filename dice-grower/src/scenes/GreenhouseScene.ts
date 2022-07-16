@@ -1,0 +1,62 @@
+import Phaser from 'phaser'
+import FlowerModel from '../models/FlowerModel'
+import FruitModel from '../models/FruitModel'
+import PlantModel from '../models/PlantModel'
+import BouncingLogo from './BouncingLogo'
+import PottedPLant from './PottedPLant'
+
+export enum ImageNames
+{
+	Sky = 'sky',
+	Logo = 'logo',
+	RedParticle = 'red_particle',
+    PottedPLant = 'potted_plant'
+}
+
+export default class GreenhouseScene extends Phaser.Scene
+{
+	constructor()
+	{
+		super('hello-world')
+	}
+
+	preload()
+    {
+        this.load.setBaseURL('http://labs.phaser.io')
+
+        this.load.image(ImageNames.Sky, 'assets/skies/space3.png')
+        this.load.image(ImageNames.Logo, 'assets/sprites/phaser3-logo.png')
+        this.load.image(ImageNames.RedParticle, 'assets/particles/red.png')
+        this.load.image(ImageNames.PottedPLant, 'assets/sprites/tomato.png')
+
+    }
+
+    create()
+    {
+        this.add.image(400, 300, ImageNames.Sky)
+
+        const emitter = this.createEmitter(ImageNames.RedParticle)
+		const logo = new BouncingLogo(this, 400, 100, ImageNames.Logo)
+
+        const fruit: FruitModel = new FruitModel(3, 'red', 'striped', 4);
+        const flower: FlowerModel = new FlowerModel(4);
+        const plant: PlantModel = new PlantModel(3, fruit, flower);
+
+        new PottedPLant(this, 150, 100, ImageNames.PottedPLant, plant);
+
+        emitter.startFollow(logo.display)
+	}
+	
+	private createEmitter(textureName: string)
+	{
+		const particles = this.add.particles(textureName)
+
+        const emitter = particles.createEmitter({
+            speed: 100,
+            scale: { start: 1, end: 0 },
+            blendMode: 'ADD'
+		})
+		
+		return emitter
+	}
+}
