@@ -29,13 +29,13 @@ export class PlantRenderer {
             case GrowthStages.SEED:
                 this.num_stem_segments = 0;
                 break;
-            case GrowthStages.SMALL_PLANT:
+            case GrowthStages.SPROUT:
                 this.num_stem_segments = 1;
                 break;
-            case GrowthStages.MEDIUM_PLANT:
+            case GrowthStages.FLOWER:
                 this.num_stem_segments = 2;
                 break;
-            case GrowthStages.LARGE_PLANT:
+            case GrowthStages.FRUIT:
                 this.num_stem_segments = 3;
                 break;
         }
