@@ -23,18 +23,19 @@ export class PlantRenderer {
 
         this.x_pos = x_pos;
         this.y_pos = y_pos;
+        this.render_order = [];
 
         switch (plantmodel.currentStage) {
             case GrowthStages.SEED:
                 this.num_stem_segments = 0;
                 break;
-            case GrowthStages.SMALL_PLANT:
+            case GrowthStages.SPROUT:
                 this.num_stem_segments = 1;
                 break;
-            case GrowthStages.MEDIUM_PLANT:
+            case GrowthStages.FLOWER:
                 this.num_stem_segments = 2;
                 break;
-            case GrowthStages.LARGE_PLANT:
+            case GrowthStages.FRUIT:
                 this.num_stem_segments = 3;
                 break;
         }
@@ -73,7 +74,7 @@ export class PlantRenderer {
 
             switch (this.render_order[index]) {
                 case "seed":
-                    
+
                     //display seed pic
                     break;
                 case "sprout":

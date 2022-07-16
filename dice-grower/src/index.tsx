@@ -1,6 +1,6 @@
 import Phaser from 'phaser'
 
-import GreenhouseScene from './scenes/GreenhouseScene'
+import MainScene from './graphics/scenes/MainScene'
 
 const config: Phaser.Types.Core.GameConfig = {
 	type: Phaser.AUTO,
@@ -12,7 +12,7 @@ const config: Phaser.Types.Core.GameConfig = {
 			gravity: { y: 200 }
 		}
 	},
-	scene: [GreenhouseScene]
+	scene: [MainScene]
 }
 
 export default new Phaser.Game(config)
