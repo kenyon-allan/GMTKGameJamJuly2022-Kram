@@ -7,6 +7,7 @@ export default class PlantModel {
     readonly fruit: FruitModel;
     readonly flower: FlowerModel;
     readonly wateringsPerGrowthStage: number;
+    
     constructor(wateringsPerGrowthStage: number, fruit: FruitModel, flower: FlowerModel) {
         this.wateringsPerGrowthStage = wateringsPerGrowthStage;
         this.fruit = fruit;
