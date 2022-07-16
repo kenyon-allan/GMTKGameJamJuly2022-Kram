@@ -1,10 +1,10 @@
 import SeedModel from "./SeedModel";
 
 export default class FruitModel {
-    readonly dieSize: number;
-    readonly color: number[];
-    readonly pattern: string;
-    readonly seed: SeedModel;
+    private dieSize: number;
+    private color: number[];
+    private pattern: string;
+    private seed: SeedModel;
     constructor(dieSize: number, color: number[], pattern: string, seed: SeedModel) {
         this.dieSize = dieSize;
         this.color = color;

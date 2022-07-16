@@ -4,9 +4,9 @@ import { GrowthStages } from "../types/GrowthStages";
 export default class PlantModel {
     private privateCurrentStage: GrowthStages;
     private privateCurrentWaterings: number = 0;
-    readonly fruit: FruitModel;
-    readonly flower: FlowerModel;
-    readonly wateringsPerGrowthStage: number;
+    private fruit: FruitModel;
+    private flower: FlowerModel;
+    private wateringsPerGrowthStage: number;
     
     constructor(wateringsPerGrowthStage: number, fruit: FruitModel, flower: FlowerModel) {
         this.wateringsPerGrowthStage = wateringsPerGrowthStage;
@@ -23,7 +23,7 @@ export default class PlantModel {
         return this.privateCurrentStage;
     }
 
-    get harvestFruit(): FruitModel {
+    get getFruit(): FruitModel {
         return this.fruit;
     }
 
