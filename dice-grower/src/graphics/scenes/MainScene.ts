@@ -22,7 +22,7 @@ import { ImageNames } from "../ImageNames";
 		//this.load.setBaseURL('/') //todo something
 
         this.load.image(ImageNames.STEM, 'assets/stem.png')
-		this.load.audio("bgm", 'sound/pippetals.wav')
+		this.load.audio("bgm", 'assets/pippetals.wav')
 	}
 
 	create() {
