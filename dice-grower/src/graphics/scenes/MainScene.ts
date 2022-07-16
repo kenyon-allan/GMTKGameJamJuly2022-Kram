@@ -1,10 +1,10 @@
-
-import Phaser from 'phaser'
+import { ImageNames } from "../assets/ImageNames";
 
  export default class MainScene extends Phaser.Scene {
     constructor()
 	{
-		super('title');
+		super('main'); //unique on app-level
+		
 	}
 
 	//greenhouse section
@@ -17,5 +17,16 @@ import Phaser from 'phaser'
 		//customers with want bubbles
 			//drag and drop to complete orders
 		//
+
+	preload() {
+		this.load.setBaseURL('/') //todo something
+
+        this.load.image(ImageNames.STEM, 'src/graphics/assets/stem.png')
+	}
+
+	create() {
+		this.add.image(400,300,ImageNames.STEM);
+		this.add.image(400,400,ImageNames.STEM);
+	}
 
  }
