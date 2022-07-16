@@ -25,6 +25,31 @@ export default class PlantModel {
 
     // TODO: build me
     water() {
+        this.privateCurrentWaterings += 1;
+        if (this.privateCurrentWaterings === this.wateringsPerGrowthStage) {
+            if (this.privateCurrentStage === GrowthStages.SEED) {
+                this.privateCurrentStage = GrowthStages.SMALL_PLANT;
+            }
+            else if (this.privateCurrentStage === GrowthStages.SMALL_PLANT) {
+                this.privateCurrentStage = GrowthStages.MEDIUM_PLANT;
+            }
+            else if (this.privateCurrentStage === GrowthStages.MEDIUM_PLANT) {
+                this.privateCurrentStage = GrowthStages.LARGE_PLANT;
+            }
+            this.privateCurrentWaterings = 0;
+        }
+    }
 
+    fertilize() {
+        if (this.privateCurrentStage === GrowthStages.SEED) {
+            this.privateCurrentStage = GrowthStages.SMALL_PLANT;
+        }
+        else if (this.privateCurrentStage === GrowthStages.SMALL_PLANT) {
+            this.privateCurrentStage = GrowthStages.MEDIUM_PLANT;
+        }
+        else if (this.privateCurrentStage === GrowthStages.MEDIUM_PLANT) {
+            this.privateCurrentStage = GrowthStages.LARGE_PLANT;
+        }
+        this.privateCurrentWaterings = 0;
     }
 }
