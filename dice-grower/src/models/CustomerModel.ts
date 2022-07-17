@@ -2,11 +2,13 @@ export default class CustomerModel {
     color:Array<Number>;
     dieShape:number;
     diePattern:string;
+    dieValue:number;
 
     constructor() {
         this.color = this.colorPicker();
         this.dieShape = this.diePicker();
         this.diePattern = this.patternPicker();
+        this.dieValue = this.pricePicker(this.dieShape, this.diePattern);
     }
     private colorPicker() {
         let pickR = Math.floor(Math.random()*256);
@@ -42,5 +44,8 @@ export default class CustomerModel {
     private patternPicker() {
         let possiblePatterns = ["solid", "split", "swirl", "speckled", "gradient"];
         return possiblePatterns[Math.floor(Math.random()*6)];
+    }
+    private pricePicker(Shape, Pattern) {
+        return (Shape*0.5 + Pattern*2)
     }
 }
