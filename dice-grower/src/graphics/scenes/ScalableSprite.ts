@@ -2,7 +2,7 @@ import Phaser from 'phaser'
 
 export default class ScalableSprite
 {
-	private image: Phaser.Physics.Arcade.Image
+	image: Phaser.Physics.Arcade.Image
 
 	get display()
 	{

@@ -6,8 +6,10 @@ import ScalableSprite from "./ScalableSprite";
  export default class MainScene extends Phaser.Scene {
 	private plants: PlantModel[] = [];
 	private text: any;
-	private money: number = 0;
+	private money: number = 500;
 	private moneyText: any;
+	private order: string = '';
+	private orderText: any;
     constructor()
 	{
 		super('main'); //unique on app-level
@@ -47,10 +49,12 @@ import ScalableSprite from "./ScalableSprite";
 		const background: any = this.add.image(483, 276, ImageNames.BACKGROUND);
 		background.setScale(1.5);
 
+		this.order = this.makeOrder();
 		this.text = this.add.text(457, 10, 'Click the pots to water the plants!');
 		this.text = this.add.text(457, 50, 'Drag the dice to customers to sell!');
 		this.add.text(655, 310, 'Drag here to sell dice!');
-		this.moneyText = this.add.text(680, 205, 'You have ' + this.money + ' money');
+		this.moneyText = this.add.text(100, 10, 'You have $' + this.money + '.');
+		this.orderText = this.add.text(680,205, 'Current order: ' + this.order + '.');
 
 		this.createPot(100);
 		this.createPot(200);
@@ -60,6 +64,7 @@ import ScalableSprite from "./ScalableSprite";
 
 	update() {
 		this.moneyText.setText('You have ' + this.money + ' money');
+		this.orderText.setText('Current order: ' + this.order + '.');
 	}
 
 
@@ -80,8 +85,9 @@ import ScalableSprite from "./ScalableSprite";
 		let bud: ScalableSprite;
 
 		pot.display.addListener('pointerdown', () => {
-			if (stem.height < 350) {
+			if (stem.height < 350 && this.money >= 10) {
 				stem.increaseHeight(50);
+				this.money -= 10;
 			}
 			// console.log
 			if (stem.height > 150) {
@@ -95,8 +101,10 @@ import ScalableSprite from "./ScalableSprite";
 			if (stem.height > 300) {
 				if (die === undefined) {
 					die = new ScalableSprite(this, x, this.screenBottom - 20 - stem.height, ImageNames.DIE, .1);
-					die.display.setTint(colors[Math.floor((Math.random() * colors.length))])
-					console.log(this.text)
+					die.image.setDataEnabled();
+					die.image.data.set('color', colors[Math.floor((Math.random() * colors.length))]);
+					die.display.setTint(die.image.data.get('color'));
+					console.log(die.image.data.get('color'));
 					this.input.setDraggable(die.display);
 
 					// die.display.setY(this.screenBottom - 50 - stem.height)
@@ -110,14 +118,44 @@ import ScalableSprite from "./ScalableSprite";
 						this.createPot(x);
 
 						if (this.sys.game.input.mousePointer.x > 700 && this.sys.game.input.mousePointer.x < 800 && this.sys.game.input.mousePointer.y > this.sys.game.canvas.height * .33 && this.sys.game.input.mousePointer.y < this.sys.game.canvas.height * .66) {
-							console.log("selling die");
-							die.display.destroy();
-							this.money += 200;
+							if (this.checkOrder(die.image.data.get('color'), this.order)) {
+								console.log("selling die");
+								die.display.destroy();
+								this.money += 200;
+								this.order = this.makeOrder();
+							}
 						}
 				
 					});
 				}
 			}
 		});
+	}
+
+	private makeOrder(): string {
+		const colors: string[] = ['red', 'green', 'blue', 'yellow', 'purple', 'teal'];
+		return colors[Math.floor((Math.random() * colors.length))];
+	}
+
+	private checkOrder(dieColor: number, orderColor: string) {
+		if (dieColor === 0xff0000 && orderColor === 'red') {
+			return true;
+		}
+		if (dieColor === 0x00ff00 && orderColor === 'green') {
+			return true;
+		}
+		if (dieColor === 0x0000ff && orderColor === 'blue') {
+			return true;
+		}
+		if (dieColor === 0xffff00 && orderColor === 'yellow') {
+			return true;
+		}
+		if (dieColor === 0xff00ff && orderColor === 'purple') {
+			return true;
+		}
+		if (dieColor === 0x00ffff && orderColor === 'teal') {
+			return true;
+		}
+		return false;
 	}
  }
