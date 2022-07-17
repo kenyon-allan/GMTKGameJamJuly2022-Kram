@@ -41,8 +41,8 @@ import ScalableSprite from "./ScalableSprite";
 		music = this.sound.add("bgm", {loop: true});
 		music.play();
 
-		const background: any = this.add.image(600, 400, ImageNames.BACKGROUND);
-		background.setScale(2);
+		const background: any = this.add.image(483, 276, ImageNames.BACKGROUND);
+		background.setScale(1.5);
 
 		this.text = this.add.text(100, 200, 'Click the pots to water the plants!');
 
