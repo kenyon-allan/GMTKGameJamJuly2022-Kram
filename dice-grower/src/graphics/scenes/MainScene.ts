@@ -21,11 +21,11 @@ import { ImageNames } from "../ImageNames";
 	preload() {
 		//this.load.setBaseURL('/') //todo something
 
-        this.load.image(ImageNames.STEM, 'assets/stem.png')
+        this.load.image(ImageNames.BACKGROUND, 'assets/background.png')
 	}
 
 	create() {
-		this.add.image(400,300,ImageNames.STEM);
+		this.add.image(400,300,ImageNames.BACKGROUND);
 	}
 
  }
