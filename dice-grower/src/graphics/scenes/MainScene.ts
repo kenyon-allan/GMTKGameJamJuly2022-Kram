@@ -44,7 +44,8 @@ import ScalableSprite from "./ScalableSprite";
 		const background: any = this.add.image(483, 276, ImageNames.BACKGROUND);
 		background.setScale(1.5);
 
-		this.text = this.add.text(100, 200, 'Click the pots to water the plants!');
+		this.text = this.add.text(457, 10, 'Click the pots to water the plants!');
+		this.text = this.add.text(457, 50, 'Drag the dice to customers to sell!');
 
 		this.createPot(100);
 		this.createPot(200);
