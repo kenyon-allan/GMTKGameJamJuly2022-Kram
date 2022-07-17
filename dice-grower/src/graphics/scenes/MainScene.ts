@@ -5,6 +5,8 @@ import ScalableSprite from "./ScalableSprite";
  export default class MainScene extends Phaser.Scene {
 	private plants: PlantModel[] = [];
 	private text: any;
+	private money: number = 0;
+	private moneyText: any;
     constructor()
 	{
 		super('main'); //unique on app-level
@@ -46,12 +48,21 @@ import ScalableSprite from "./ScalableSprite";
 
 		this.text = this.add.text(457, 10, 'Click the pots to water the plants!');
 		this.text = this.add.text(457, 50, 'Drag the dice to customers to sell!');
+		this.text = this.add.text(100, 200, 'Click the pots to water the plants!');
+		this.add.text(900, 400, 'Drag here to sell die!');
+		this.moneyText = this.add.text(900, 200, 'You have ' + this.money + ' money');
 
 		this.createPot(100);
 		this.createPot(200);
 		this.createPot(300);
 		this.createPot(400);
 	}
+
+	update() {
+		this.moneyText.setText('You have ' + this.money + ' money');
+	}
+
+
 
 	get screenBottom(): number {
 		return this.sys.game.canvas.height;
@@ -92,6 +103,12 @@ import ScalableSprite from "./ScalableSprite";
 						console.log('drag')
 						die.display.setX(this.sys.game.input.mousePointer.x)
 						die.display.setY(this.sys.game.input.mousePointer.y);
+
+						if (this.sys.game.input.mousePointer.x > 900 && this.sys.game.input.mousePointer.x < 1000 && this.sys.game.input.mousePointer.y > this.sys.game.canvas.height * .25 && this.sys.game.input.mousePointer.y < this.sys.game.canvas.height * .75) {
+							console.log("selling die");
+							die.display.destroy();
+							this.money += 200;
+						}
 				
 					});
 				}
