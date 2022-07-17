@@ -43,12 +43,13 @@ import ScalableSprite from "./ScalableSprite";
 		music = this.sound.add("bgm", {loop: true});
 		music.play();
 
-		const background: any = this.add.image(600, 400, ImageNames.BACKGROUND);
-		background.setScale(2);
+		const background: any = this.add.image(483, 276, ImageNames.BACKGROUND);
+		background.setScale(1.5);
 
-		this.text = this.add.text(100, 200, 'Click the pots to water the plants!');
-		this.add.text(900, 400, 'Drag here to sell die!');
-		this.moneyText = this.add.text(900, 200, 'You have ' + this.money + ' money');
+		this.text = this.add.text(457, 10, 'Click the pots to water the plants!');
+		this.text = this.add.text(457, 50, 'Drag the dice to customers to sell!');
+		this.add.text(655, 310, 'Drag here to sell dice!');
+		this.moneyText = this.add.text(680, 205, 'You have ' + this.money + ' money');
 
 		this.createPot(100);
 		this.createPot(200);
@@ -106,7 +107,7 @@ import ScalableSprite from "./ScalableSprite";
 						bud.display.destroy();
 						this.createPot(x);
 
-						if (this.sys.game.input.mousePointer.x > 900 && this.sys.game.input.mousePointer.x < 1000 && this.sys.game.input.mousePointer.y > this.sys.game.canvas.height * .25 && this.sys.game.input.mousePointer.y < this.sys.game.canvas.height * .75) {
+						if (this.sys.game.input.mousePointer.x > 700 && this.sys.game.input.mousePointer.x < 800 && this.sys.game.input.mousePointer.y > this.sys.game.canvas.height * .33 && this.sys.game.input.mousePointer.y < this.sys.game.canvas.height * .66) {
 							console.log("selling die");
 							die.display.destroy();
 							this.money += 200;
