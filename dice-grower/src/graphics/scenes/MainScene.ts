@@ -23,6 +23,7 @@ import { ImageNames } from "../ImageNames";
 
         this.load.image(ImageNames.STEM, 'assets/stem.png')
 		this.load.audio("bgm", 'assets/pippetals.wav')
+		this.load.image(ImageNames.BACKGROUND, 'assets/background.png')
 	}
 
 	create() {
@@ -31,6 +32,6 @@ import { ImageNames } from "../ImageNames";
 		bgm = this.sound.add("bgm", {loop: true});
 		this.add.image(400, 300, 'bud');
 		bgm.play();
+		this.add.image(400,300,ImageNames.BACKGROUND);
 	}
-
  }
