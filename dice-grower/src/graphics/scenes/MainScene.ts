@@ -48,8 +48,7 @@ import ScalableSprite from "./ScalableSprite";
 
 		this.text = this.add.text(457, 10, 'Click the pots to water the plants!');
 		this.text = this.add.text(457, 50, 'Drag the dice to customers to sell!');
-		this.text = this.add.text(100, 200, 'Click the pots to water the plants!');
-		this.add.text(900, 400, 'Drag here to sell die!');
+		this.add.text(655, 310, 'Drag here to sell dice!');
 		this.moneyText = this.add.text(900, 200, 'You have ' + this.money + ' money');
 
 		this.createPot(100);
@@ -95,7 +94,6 @@ import ScalableSprite from "./ScalableSprite";
 				if (die === undefined) {
 					die = new ScalableSprite(this, x, this.screenBottom - 20 - stem.height, ImageNames.DIE, .1);
 					console.log(this.text)
-					this.text.setText('Drag the die to move them around!')
 				} else {
 					// die.display.setY(this.screenBottom - 50 - stem.height)
 					this.input.setDraggable(die.display);
@@ -104,7 +102,7 @@ import ScalableSprite from "./ScalableSprite";
 						die.display.setX(this.sys.game.input.mousePointer.x)
 						die.display.setY(this.sys.game.input.mousePointer.y);
 
-						if (this.sys.game.input.mousePointer.x > 900 && this.sys.game.input.mousePointer.x < 1000 && this.sys.game.input.mousePointer.y > this.sys.game.canvas.height * .25 && this.sys.game.input.mousePointer.y < this.sys.game.canvas.height * .75) {
+						if (this.sys.game.input.mousePointer.x > 600 && this.sys.game.input.mousePointer.x < 700 && this.sys.game.input.mousePointer.y > this.sys.game.canvas.height * .25 && this.sys.game.input.mousePointer.y < this.sys.game.canvas.height * .75) {
 							console.log("selling die");
 							die.display.destroy();
 							this.money += 200;
