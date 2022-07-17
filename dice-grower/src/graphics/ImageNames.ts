@@ -1,5 +1,8 @@
 export enum ImageNames
 {
 	STEM = "stem",
-	BACKGROUND = "background"
+	POT = "pot",
+	BUD = "bud",
+	BACKGROUND = "background",
+	DIE = "die"
 }
