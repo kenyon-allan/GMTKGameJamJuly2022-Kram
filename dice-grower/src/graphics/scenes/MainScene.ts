@@ -4,6 +4,7 @@ import ScalableSprite from "./ScalableSprite";
 
  export default class MainScene extends Phaser.Scene {
 	private plants: PlantModel[] = [];
+	private text: any;
     constructor()
 	{
 		super('main'); //unique on app-level
@@ -43,6 +44,8 @@ import ScalableSprite from "./ScalableSprite";
 		const background: any = this.add.image(600, 400, ImageNames.BACKGROUND);
 		background.setScale(2);
 
+		this.text = this.add.text(100, 200, 'Click the pots to water the plants!');
+
 		this.createPot(100);
 		this.createPot(200);
 		this.createPot(300);
@@ -60,7 +63,6 @@ import ScalableSprite from "./ScalableSprite";
 		let die: ScalableSprite;
 		stem.display.setY(this.screenBottom - pot.height + 30);
 		stem.display.displayHeight = 50;
-		// const text = this.add.text(x, this.screenBottom - stem.height - 50, 'water');
 		// text.display
 		let bud: ScalableSprite;
 
@@ -80,6 +82,8 @@ import ScalableSprite from "./ScalableSprite";
 			if (stem.height > 300) {
 				if (die === undefined) {
 					die = new ScalableSprite(this, x, this.screenBottom - 20 - stem.height, ImageNames.DIE, .1);
+					console.log(this.text)
+					this.text.setText('Drag the die to move them around!')
 				} else {
 					// die.display.setY(this.screenBottom - 50 - stem.height)
 					this.input.setDraggable(die.display);
