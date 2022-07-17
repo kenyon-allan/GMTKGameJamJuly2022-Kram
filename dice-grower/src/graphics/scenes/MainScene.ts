@@ -1,5 +1,6 @@
 import PlantModel from "../../models/PlantModel";
 import { ImageNames } from "../ImageNames";
+import { ColorNames } from "../ColorNames";
 import ScalableSprite from "./ScalableSprite";
 
  export default class MainScene extends Phaser.Scene {
@@ -69,6 +70,7 @@ import ScalableSprite from "./ScalableSprite";
 
 
 	private createPot(x: number): void {
+		const colors: number[] = [ColorNames.RED, ColorNames.GREEN, ColorNames.BLUE, ColorNames.YELLOW, ColorNames.PURPLE, ColorNames.TEAL];
 		const stem: ScalableSprite = new ScalableSprite(this, x, this.screenBottom, ImageNames.STEM, .2);
 		const pot: ScalableSprite = new ScalableSprite(this, x, this.screenBottom, ImageNames.POT, .2);
 		let die: ScalableSprite;
@@ -93,8 +95,8 @@ import ScalableSprite from "./ScalableSprite";
 			if (stem.height > 300) {
 				if (die === undefined) {
 					die = new ScalableSprite(this, x, this.screenBottom - 20 - stem.height, ImageNames.DIE, .1);
+					die.display.setTint(colors[Math.floor((Math.random() * colors.length))])
 					console.log(this.text)
-					this.text.setText('Drag the die to move them around!')
 					this.input.setDraggable(die.display);
 
 					// die.display.setY(this.screenBottom - 50 - stem.height)
