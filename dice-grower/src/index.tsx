@@ -12,7 +12,8 @@ const config: Phaser.Types.Core.GameConfig = {
 			gravity: { y: 0 }
 		}
 	},
-	scene: [MainScene]
+	scene: [MainScene],
+	title: 'Dice Grower'
 }
 
 export default new Phaser.Game(config)
