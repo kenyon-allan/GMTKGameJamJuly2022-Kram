@@ -53,7 +53,7 @@ import ScalableSprite from "./ScalableSprite";
 		this.text = this.add.text(457, 10, 'Click the pots to water the plants!');
 		this.text = this.add.text(457, 50, 'Drag the dice to customers to sell!');
 		this.add.text(655, 310, 'Drag here to sell dice!');
-		this.moneyText = this.add.text(100, 10, 'You have $' + this.money + '.');
+		this.moneyText = this.add.text(100, 10, 'You have $' + this.money);
 		this.orderText = this.add.text(680,205, 'Current order: ' + this.order + '.');
 
 		this.createPot(100);
@@ -63,7 +63,7 @@ import ScalableSprite from "./ScalableSprite";
 	}
 
 	update() {
-		this.moneyText.setText('You have ' + this.money + ' money');
+		this.moneyText.setText('You have $' + this.money);
 		this.orderText.setText('Current order: ' + this.order + '.');
 	}
 
