@@ -94,13 +94,18 @@ import ScalableSprite from "./ScalableSprite";
 				if (die === undefined) {
 					die = new ScalableSprite(this, x, this.screenBottom - 20 - stem.height, ImageNames.DIE, .1);
 					console.log(this.text)
-				} else {
-					// die.display.setY(this.screenBottom - 50 - stem.height)
+					this.text.setText('Drag the die to move them around!')
 					this.input.setDraggable(die.display);
+
+					// die.display.setY(this.screenBottom - 50 - stem.height)
 					die.display.on('drag', () => {
 						console.log('drag')
 						die.display.setX(this.sys.game.input.mousePointer.x)
 						die.display.setY(this.sys.game.input.mousePointer.y);
+						pot.display.destroy();
+						stem.display.destroy();
+						bud.display.destroy();
+						this.createPot(x);
 
 						if (this.sys.game.input.mousePointer.x > 600 && this.sys.game.input.mousePointer.x < 700 && this.sys.game.input.mousePointer.y > this.sys.game.canvas.height * .25 && this.sys.game.input.mousePointer.y < this.sys.game.canvas.height * .75) {
 							console.log("selling die");
