@@ -94,9 +94,9 @@ import ScalableSprite from "./ScalableSprite";
 					die = new ScalableSprite(this, x, this.screenBottom - 20 - stem.height, ImageNames.DIE, .1);
 					console.log(this.text)
 					this.text.setText('Drag the die to move them around!')
-				} else {
-					// die.display.setY(this.screenBottom - 50 - stem.height)
 					this.input.setDraggable(die.display);
+
+					// die.display.setY(this.screenBottom - 50 - stem.height)
 					die.display.on('drag', () => {
 						console.log('drag')
 						die.display.setX(this.sys.game.input.mousePointer.x)
