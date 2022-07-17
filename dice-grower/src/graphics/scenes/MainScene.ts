@@ -101,6 +101,10 @@ import ScalableSprite from "./ScalableSprite";
 						console.log('drag')
 						die.display.setX(this.sys.game.input.mousePointer.x)
 						die.display.setY(this.sys.game.input.mousePointer.y);
+						pot.display.destroy();
+						stem.display.destroy();
+						bud.display.destroy();
+						this.createPot(x);
 
 						if (this.sys.game.input.mousePointer.x > 900 && this.sys.game.input.mousePointer.x < 1000 && this.sys.game.input.mousePointer.y > this.sys.game.canvas.height * .25 && this.sys.game.input.mousePointer.y < this.sys.game.canvas.height * .75) {
 							console.log("selling die");
